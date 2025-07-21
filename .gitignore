@@ -15,3 +15,8 @@ yarn-error.log*
 
 # Build files
 build/
+/package-lock.json
+
+# Secrets
+/parkhang.key
+/parkhang.cert

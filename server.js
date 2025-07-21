@@ -3,6 +3,8 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger/swagger');
+const https = require('https');
+const fs = require('fs');
 
 const authRoutes = require('./routes/authRoutes');
 
@@ -17,5 +19,12 @@ app.use('/api/auth', authRoutes);
 // app.use('/api/checkin', require('./routes/checkinRoutes'));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const PORT = process.env.PORT;
+const httpsOptions = {
+    key: fs.readFileSync('./parkhang.key'),
+    cert: fs.readFileSync('./parkhang.cert'),
+};
+
+https.createServer(httpsOptions, app).listen(PORT, () => {
+    console.log(`🚀 HTTPS Server running on https://localhost:${PORT}`);
+});
