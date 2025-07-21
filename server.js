@@ -4,15 +4,17 @@ const dotenv = require('dotenv');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger/swagger');
 
+const authRoutes = require('./routes/authRoutes');
+
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/parks', require('./routes/parkRoutes'));
-app.use('/api/checkin', require('./routes/checkinRoutes'));
+app.use('/api/auth', authRoutes);
+// app.use('/api/parks', require('./routes/parkRoutes'));
+// app.use('/api/checkin', require('./routes/checkinRoutes'));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 const PORT = process.env.PORT || 5000;
