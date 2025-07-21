@@ -7,6 +7,7 @@ const https = require('https');
 const fs = require('fs');
 
 const authRoutes = require('./routes/authRoutes');
+const parkRoutes = require('./routes/parkRoutes');
 
 dotenv.config();
 
@@ -15,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
-// app.use('/api/parks', require('./routes/parkRoutes'));
+app.use('/api/parks', parkRoutes);
 // app.use('/api/checkin', require('./routes/checkinRoutes'));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
