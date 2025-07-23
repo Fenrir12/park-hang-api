@@ -1,35 +1,46 @@
 const mongoose = require('mongoose');
 
+const geometrySchema = new mongoose.Schema({
+    type: {
+        type: String,
+        enum: ['Point', 'Polygon', 'MultiPolygon'],
+        required: true,
+    },
+    coordinates: {
+        type: Array, // More precise typing can be added depending on the `type`
+        required: true,
+    },
+}, { _id: false });
+
+const propertiesSchema = new mongoose.Schema({
+    '@id': { type: String, required: true },
+    'addr:housenumber': { type: String },
+    'addr:street': { type: String },
+    leisure: { type: String },
+    name: { type: String },
+    'name:fr': { type: String },
+    type: { type: String }, // only present in some features
+    '@tainted': { type: Boolean },
+    '@geometry': { type: String },
+}, { _id: false });
+
 const featureSchema = new mongoose.Schema({
     type: {
         type: String,
-        required: true,
         enum: ['Feature'],
+        required: true,
     },
+    id: { type: String, required: true },
     properties: {
-        _id: String,
-        addr_housenumber: String,
-        addr_street: String,
-        leisure: String,
-        name: String,
-        name_fr: String,
-        _tainted: Boolean,
+        type: propertiesSchema,
+        required: true,
     },
     geometry: {
-        type: {
-            type: String,
-            enum: ['Polygon'],
-            required: true,
-        },
-        coordinates: {
-            type: [[[Number]]],
-            required: true,
-        },
+        type: geometrySchema,
+        required: true,
     },
-    id: String,
 });
 
-// If you want to use GeoJSON spatial queries, create a 2dsphere index on geometry:
 featureSchema.index({ geometry: '2dsphere' });
 
 const Park = mongoose.model('Park', featureSchema);

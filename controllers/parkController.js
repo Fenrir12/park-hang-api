@@ -1,6 +1,4 @@
-const Park = require("../models/parkModel");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const ParkModel = require('../models/parkModel'); // adjust path if needed
 
 
 /**
@@ -22,10 +20,10 @@ exports.getNearbyParks = async (req, res) => {
         const latitude = parseFloat(lat);
         const radiusMeters = parseFloat(radius);
 
-        // MongoDB expects radius in radians for $geoWithin with $centerSphere:
-        const radiusInRadians = radiusMeters / 6378137; // Earth's radius in meters
+        // MongoDB expects radius in radians
+        const radiusInRadians = radiusMeters / 6378137;
 
-        const parks = await Park.find({
+        const parks = await ParkModel.find({
             geometry: {
                 $geoWithin: {
                     $centerSphere: [[longitude, latitude], radiusInRadians],

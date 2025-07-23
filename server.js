@@ -22,10 +22,10 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 const PORT = process.env.PORT;
 const httpsOptions = {
-    key: fs.readFileSync('./parkhang.key'),
-    cert: fs.readFileSync('./parkhang.cert'),
+    key: fs.readFileSync('./server.key'),
+    cert: fs.readFileSync('./server.crt'),
 };
 
-https.createServer(httpsOptions, app).listen(PORT, () => {
-    console.log(`🚀 HTTPS Server running on https://localhost:${PORT}`);
+https.createServer(httpsOptions, app).listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 HTTPS Server running on https://sam-mac.local:${PORT}`);
 });
