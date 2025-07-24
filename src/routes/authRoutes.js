@@ -1,6 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const { login, register } = require('../controllers/authController');
+const express = require('express')
+const router = express.Router()
+const { login, register } = require('../controllers/authController')
 
 /**
  * @swagger
@@ -72,7 +72,7 @@ const { login, register } = require('../controllers/authController');
  *                   example: Server error
  */
 
-router.post('/login', login);
+router.post('/login', login)
 
 /**
  * @swagger
@@ -106,6 +106,6 @@ router.post('/login', login);
  *       409:
  *         description: User already exists
  */
-router.post('/register', register);
+router.post('/register', register)
 
-module.exports = router;
+module.exports = router
