@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { login, register } = require('../controllers/authController')
+const { login, signUp } = require('../controllers/authController')
 
 /**
  * @swagger
@@ -76,7 +76,7 @@ router.post('/login', login)
 
 /**
  * @swagger
- * /api/auth/register:
+ * /api/auth/signup:
  *   post:
  *     summary: Register a new user
  *     tags: [Auth]
@@ -106,6 +106,6 @@ router.post('/login', login)
  *       409:
  *         description: User already exists
  */
-router.post('/register', register)
+router.post('/signup', signUp)
 
 module.exports = router

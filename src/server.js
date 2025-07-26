@@ -23,5 +23,5 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 const PORT = process.env.PORT
 
 app.listen(PORT, () => {
-  console.log(`🚀 HTTPS Server running on https://sam-mac.local:${PORT}`)
+  console.log(`🚀 HTTPS Server running`)
 })
