@@ -15,11 +15,11 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.use('/api/auth', authRoutes)
-app.use('/api/pins', pinsRoutes)
-app.use('/api/parks', parkRoutes)
-app.use('/api/users', userRoutes)
-// app.use('/api/checkin', require('./routes/checkinRoutes'));
+app.use('/v1/auth', authRoutes)
+app.use('/v1/pins', pinsRoutes)
+app.use('/v1/parks', parkRoutes)
+app.use('/v1/users', userRoutes)
+// app.use('/v1/checkin', require('./routes/checkinRoutes'));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 const PORT = process.env.PORT
