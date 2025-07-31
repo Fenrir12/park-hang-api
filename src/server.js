@@ -8,6 +8,7 @@ const authRoutes = require('./routes/authRoutes')
 const pinsRoutes = require('./routes/pinsRoutes')
 const parkRoutes = require('./routes/parkRoutes')
 const userRoutes = require('./routes/userRoute')
+const checkInRoutes = require('./routes/checkinRoutes')
 
 dotenv.config()
 
@@ -19,7 +20,7 @@ app.use('/v1/auth', authRoutes)
 app.use('/v1/pins', pinsRoutes)
 app.use('/v1/parks', parkRoutes)
 app.use('/v1/users', userRoutes)
-// app.use('/v1/checkin', require('./routes/checkinRoutes'));
+app.use('/v1/check-in', require('./routes/checkinRoutes'))
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 const PORT = process.env.PORT
