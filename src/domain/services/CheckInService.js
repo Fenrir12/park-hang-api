@@ -3,17 +3,17 @@ const { v4: uuidv4 } = require('uuid')
 class CheckInService {
   static async checkInToPark({
     parkId,
-    user,
+    userId,
     parkRepository,
     checkInRepository,
   }) {
     const park = await parkRepository.findById(parkId)
-    if (!park) throw new Error('Park not found')
+    if (!park) throw new Error(`Park ${parkId} not found`)
 
     const checkIn = await checkInRepository.create({
       checkInId: uuidv4(),
-      userId: user?.id,
-      isAnonymous: !user,
+      userId: userId,
+      isAnonymous: !userId,
       currentPark: park,
     })
 

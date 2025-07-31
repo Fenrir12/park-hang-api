@@ -1,5 +1,3 @@
-// src/application/repositories/MongoUserRepository.js
-
 class UserRepository {
   async findById(id) {
     throw new Error('UserRepository.findById not implemented')
@@ -15,6 +13,10 @@ class UserRepository {
 
   async update(id, updateData) {
     throw new Error('UserRepository.update not implemented')
+  }
+
+  async findManyByIds(ids) {
+    throw new Error('UserRepository.findMany not implemented')
   }
 }
 

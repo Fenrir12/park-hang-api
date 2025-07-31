@@ -14,6 +14,10 @@ class MongoUserRepository extends UserRepository {
   async update(id, updateData) {
     return UserModel.findByIdAndUpdate(id, updateData, { new: true })
   }
+  async findManyByIds(ids) {
+    // Ensures all ids are ObjectIds if necessary
+    return UserModel.find({ _id: { $in: ids } })
+  }
 }
 
 module.exports = MongoUserRepository

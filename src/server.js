@@ -1,4 +1,3 @@
-// server.js
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
@@ -11,6 +10,7 @@ const userRoutes = require('./interfaces/routes/userRoutes')
 const parkRoutes = require('./interfaces/routes/parkRoutes')
 const pinRoutes = require('./interfaces/routes/pinRoutes')
 const checkinRoutes = require('./interfaces/routes/checkinRoutes')
+const hangoutRoutes = require('./interfaces/routes/hangoutRoutes')
 
 const app = express()
 app.use(cors())
@@ -21,6 +21,7 @@ app.use('/v1/users', userRoutes)
 app.use('/v1/parks', parkRoutes)
 app.use('/v1/pins', pinRoutes)
 app.use('/v1/check-in', checkinRoutes)
+app.use('/v1/hangouts', hangoutRoutes)
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 

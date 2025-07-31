@@ -1,10 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const { checkInToPark } = require('../controllers/checkInController')
+const { verifyAuth } = require('../middleware/authMiddleware')
 
 /**
  * @swagger
- * /v1/checkin/{parkId}:
+ * /v1/check-in/{parkId}:
  *   post:
  *     tags: [Check-In]
  *     summary: Check in to a park
@@ -36,11 +37,13 @@ const { checkInToPark } = require('../controllers/checkInController')
  *                 timestamp:
  *                   type: string
  *                   format: date-time
+ *       400:
+ *         description: BadRequest
  *       401:
  *         description: Unauthorized
  *       404:
- *         description: Park not found
+ *         description: NotFound
  */
-router.post('/:parkId', checkInToPark)
+router.post('/:parkId', verifyAuth, checkInToPark)
 
 module.exports = router

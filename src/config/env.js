@@ -1,4 +1,3 @@
-// src/config/env.js
 require('dotenv').config()
 
 function getEnvVariable(key, required = true) {
