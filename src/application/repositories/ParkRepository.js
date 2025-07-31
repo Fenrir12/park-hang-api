@@ -1,5 +1,3 @@
-// src/application/repositories/MongoParkRepository.js
-
 class ParkRepository {
   async findById(id) {
     throw new Error('ParkRepository.findById not implemented')

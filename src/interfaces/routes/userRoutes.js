@@ -4,7 +4,7 @@ const {
   getMeController,
   patchMeController,
 } = require('../controllers/userController')
-const requireAuth = require('../middleware/authMiddleware')
+const { requireAuth } = require('../middleware/authMiddleware')
 
 /**
  * @swagger

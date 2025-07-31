@@ -4,10 +4,14 @@ const {
 
 async function checkInToPark(req, res) {
   const { parkId } = req.params
-  const user = req.user
 
+  if (!parkId) {
+    res.status(400).json({ message: 'Please provide parkId' })
+  }
+
+  const userId = req.user?.id
   try {
-    const result = await checkInToParkUseCase({ parkId, user })
+    const result = await checkInToParkUseCase({ parkId, userId })
     res.json(result)
   } catch (err) {
     console.error(err)

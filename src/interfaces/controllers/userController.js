@@ -5,9 +5,8 @@ const {
 
 async function getMeController(req, res) {
   try {
-    console.log('Getting MeUseCase')
     const userData = await getMeUseCase(req.user.id)
-    console.log(userData)
+
     res.status(200).json(userData)
   } catch (err) {
     console.error(err)
