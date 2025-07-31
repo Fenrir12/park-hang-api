@@ -25,15 +25,8 @@ exports.getMe = async (req, res) => {
 exports.patchMe = async (req, res) => {
   const { id } = req.user
 
-  const {
-    email,
-    name,
-    surname,
-    profileName,
-    city,
-    province,
-    dateOfBirth,
-  } = req.body
+  const { email, name, surname, profileName, city, province, dateOfBirth } =
+    req.body
 
   try {
     console.log(req.body)
