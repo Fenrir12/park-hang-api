@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { checkInToPark } = require('../controllers/checkinController')
+const { checkInToPark } = require('../controllers/checkInController')
 
 router.post('/:parkId', checkInToPark)
 
