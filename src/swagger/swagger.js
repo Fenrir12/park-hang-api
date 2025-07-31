@@ -1,4 +1,5 @@
-const swaggerJsDoc = require('swagger-jsdoc')
+const swaggerJSDoc = require('swagger-jsdoc')
+const swaggerUi = require('swagger-ui-express')
 
 const options = {
   definition: {
@@ -6,9 +7,23 @@ const options = {
     info: {
       title: 'ParkHang API',
       version: '1.0.0',
+      description:
+        'Automatically generated Swagger documentation for ParkHang API',
     },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+    },
+    security: [{ bearerAuth: [] }],
   },
-  apis: ['./routes/*.js'], // Looks for JSDoc comments in route files
+  apis: ['./src/interfaces/routes/*.js'],
 }
 
-module.exports = swaggerJsDoc(options)
+const swaggerSpec = swaggerJSDoc(options)
+
+module.exports = { swaggerSpec, swaggerUi }
