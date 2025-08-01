@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { TTL_SECONDS } = require('../../../../config/ttl')
 
 const HangoutSchema = new mongoose.Schema(
   {
@@ -8,9 +9,13 @@ const HangoutSchema = new mongoose.Schema(
     parkId: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String },
-    createdAt: { type: Date, default: Date.now, expires: '4h' }, // TTL auto-delete
+    createdAt: { type: Date, default: Date.now }, // TTL auto-delete
   },
   { timestamps: true },
+)
+HangoutSchema.index(
+  { createdAt: 1 },
+  { expireAfterSeconds: TTL_SECONDS.HANGOUT_EXPIRATION },
 )
 
 module.exports = mongoose.model('Hangout', HangoutSchema)
